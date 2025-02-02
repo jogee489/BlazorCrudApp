@@ -14,10 +14,18 @@ namespace BlazorCrudApp.Services
             _context = context;
         }
 
+        public async Task<Game> AddGame(Game game)
+        {
+            _context.Games.Add(game);
+            await _context.SaveChangesAsync();
+            return game;
+        }
+
         public async Task<List<Game>> GetAllGamesAsync()
         {
             var games = await _context.Games.ToListAsync();
             return games;
         }
+
     }
 }
